@@ -18,8 +18,12 @@ jobs:
       id: setVar
       run: |
         originalString=$(echo "${{ github.event.head_commit.message }}" | head -n 1)
+
+        # Remove diacritics (accent marks)
+        sanitizedString=$(echo "$originalString" | iconv -f UTF-8 -t ASCII//TRANSLIT)
+
         # Replace spaces with hyphens, and remove invalid characters
-        sanitizedString=$(echo "$originalString" | tr -cs '[:alnum:]_-áéíóúÁÉÍÓÚüÜñÑ' '-')
+        sanitizedString=$(echo "$sanitizedString" | tr -cs '[:alnum:]_-' '-')
 
         # Trim leading and trailing hyphens
         sanitizedString=$(echo "$sanitizedString" | sed 's/^-//;s/-$//')
