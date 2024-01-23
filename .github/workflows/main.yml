@@ -5,7 +5,7 @@ on:
 
 env:
   GH_TOKEN: ${{ github.token }}
-  
+
 jobs:
   setVariable:
     runs-on: ubuntu-latest
@@ -32,3 +32,4 @@ jobs:
         
     - name: Use the variable
       run: echo "Variable Without Spaces:${{ env.commitmessage }}"
+      
