@@ -19,7 +19,7 @@ jobs:
       run: |
         originalString=$(echo "${{ github.event.head_commit.message }}" | head -n 1)
         # Replace spaces with hyphens, and remove invalid characters
-        sanitizedString=$(echo "$originalString" | tr -cs '[:alnum:]_-' '-')
+        sanitizedString=$(echo "$originalString" | tr -cs '[:alnum:]_-\200-\377' '-')
 
         # Trim leading and trailing hyphens
         sanitizedString=$(echo "$sanitizedString" | sed 's/^-//;s/-$//')
