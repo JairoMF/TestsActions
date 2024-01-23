@@ -2,6 +2,7 @@ name: APP dev
 on:
   push:
     branches: [ main ]
+    
 env:
   GH_TOKEN: ${{ github.token }}
 jobs:
